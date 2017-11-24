@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Nov 24 13:32:55 2017
+
+@author: Rohil
+"""
+
 import numpy as np
 import random
 import string
@@ -135,8 +142,10 @@ def med_recursive(s1, s2):
 
     return min(con1, con2, con3)
 #approximated greedy alogrithm
-def approx_greedy(m):
-    for i in range(1, m.shape[0]):
+def approx_greedy(s1,s2):
+   m = init(s1, s2)
+    
+   for i in range(1, m.shape[0]):
         for j in range(1, m.shape[1]):
     #only considering the substitution as my greedy approach
             if s1[i-1] == s2[j-1]:
@@ -147,7 +156,10 @@ def approx_greedy(m):
                 con3 = m[i-1, j-1] + 1
             
             m[i][j] = con3
-    return m[m.shape[0]-1][m.shape[1]-1]
+    
+   print(" ")
+   print("{} {}".format("Apporoximated Greedy Algorithm:", int(m[m.shape[0] - 1][m.shape[1] - 1])))
+   return m[m.shape[0]-1][m.shape[1]-1]
 
 
 # RUNTIME CALCULATOR
@@ -165,8 +177,8 @@ def string_generator(size=10, chars=string.ascii_uppercase):
 def main():
     # s1 = string_generator()
     # s2 = string_generator()
-    s1 = "INTENTION"
-    s2 = "EXECUTION"
+    s1 = "bbamde"
+    s2 = "abcde"
     print('String #1 : ' + s1)
     print('String #2 : ' + s2)
 
