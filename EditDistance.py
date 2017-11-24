@@ -134,6 +134,20 @@ def med_recursive(s1, s2):
     con3 = med_recursive(s1[:-1], s2[:-1]) + (s1[-1] != s2[-1])   # Substitution
 
     return min(con1, con2, con3)
+#approximated greedy alogrithm
+def approx_greedy(m):
+    for i in range(1, m.shape[0]):
+        for j in range(1, m.shape[1]):
+    #only considering the substitution as my greedy approach
+            if s1[i-1] == s2[j-1]:
+                # if same letters, we add nothing
+                con3 = m[i-1, j-1]
+            else:
+                # if different letters, we add one
+                con3 = m[i-1, j-1] + 1
+            
+            m[i][j] = con3
+    return m[m.shape[0]-1][m.shape[1]-1]
 
 
 # RUNTIME CALCULATOR
@@ -180,6 +194,14 @@ def main():
     print("________________________")
     print("PURE RECURSIVE ALGORITHM")
     result = calc_runtime(med_recursive, s1, s2)
+    print(" ")
+    print("{} {}".format("MINIMUM EDIT DISTANCE :", int(result[1])))
+    print("RUNNING TIME :  %s seconds" % result[0])
+    
+    # Approximated Greedy Algorithm
+    print("________________________")
+    print("Approximated Greedy Algorithm")
+    result = calc_runtime(approx_greedy, s1, s2)
     print(" ")
     print("{} {}".format("MINIMUM EDIT DISTANCE :", int(result[1])))
     print("RUNNING TIME :  %s seconds" % result[0])
